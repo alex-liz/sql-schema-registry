@@ -29,7 +29,3 @@ Bug tracker
 
 Documentation
    https://sqlparse.readthedocs.io/
-
-
-
-sql_schema_registry is licensed under the MIT license.
