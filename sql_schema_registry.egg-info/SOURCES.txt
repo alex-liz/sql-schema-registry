@@ -1,9 +1,0 @@
-README.md
-setup.py
-sql_schema_registry/__init__.py
-sql_schema_registry/database.py
-sql_schema_registry/files.py
-sql_schema_registry.egg-info/PKG-INFO
-sql_schema_registry.egg-info/SOURCES.txt
-sql_schema_registry.egg-info/dependency_links.txt
-sql_schema_registry.egg-info/top_level.txt
