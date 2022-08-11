@@ -48,13 +48,14 @@ class SchemaRegistryFiles:
         :param sql_file: File name
         :return: dll and object_name from the file name
         """
-        ddl = ' '.join(sql_file.name.split('-')[1].split('_')[:2])
-        object_name = '_'.join(''.join(sql_file.name.split('-')[1]).split('_')[2:]).split('.')[0]
+        ddl = ' '.join(sql_file.split('-')[1].split('_')[:2])
+        object_name = '_'.join(''.join(sql_file.split('-')[1]).split('_')[2:]).split('.')[0]
         return ddl, object_name
 
-    def check_qa_sql_file_(self, sql_file):
+    def check_qa_sql_file(self, sql_file, rewrite=True):
         """
         Rewrites sql file with formatted SQL code and checks that file name info is same as in code
+        :param rewrite: Rewrite sql file with formatted standard code
         :param sql_file: file name
         :return: SQL code processed
         """
@@ -64,7 +65,8 @@ class SchemaRegistryFiles:
             code = sqlparse.format(code, keyword_case="upper")
             ddl, object_name = self.parse_sql_file(sql_file=sql_file)
             if ddl in code and object_name in code:
-                self._write_file(filepath=sql_file, code=code)
+                if rewrite:
+                    self._write_file(filepath=sql_file, code=code)
                 return code
             else:
                 logging.error("File name and code doesn't match.")

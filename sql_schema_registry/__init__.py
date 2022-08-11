@@ -29,7 +29,7 @@ def deploy(schema_name, files_path, db_name, db_conn, user_name=None, schema_res
     sql_files_list = sc_files.get_file_list_ordered(sql_path=files_path)
     for sql_file in sql_files_list:
         # QA file name and sql cod  e
-        sql_code = sc_files.check_qa_sql_file_(sql_file=sql_file)
+        sql_code = sc_files.check_qa_sql_file(sql_file=sql_file.name)
         sql_id = int(sql_file.name.split('-')[0])
         # Only deploy ids bigger than currently deployed
         if db_last_id < sql_id:
