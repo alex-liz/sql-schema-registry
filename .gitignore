@@ -1,0 +1,4 @@
+/.eggs/
+/build/
+/dist/
+/sql_schema_registry.egg-info/

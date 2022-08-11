@@ -1,4 +1,4 @@
-python-sqlparse - Parse SQL statements
+SQL schema registry
 ======================================
 
 |buildstatus|_
@@ -51,16 +51,14 @@ Links
 -----
 
 Project page
-   https://github.com/andialbrecht/sqlparse
+   https://github.com/alex-liz/sql-schema-registry
 
 Bug tracker
-   https://github.com/andialbrecht/sqlparse/issues
+   https://github.com/alex-liz/sql-schema-registry/issues
 
 Documentation
    https://sqlparse.readthedocs.io/
 
-Online Demo
-   https://sqlformat.org/
 
 
 sqlparse is licensed under the BSD license.
