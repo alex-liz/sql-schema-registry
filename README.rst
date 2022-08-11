@@ -21,6 +21,10 @@ Quick Start
 .. code-block:: python
     sql_schema_registry.deploy(schema_name, db_name, user_name, files_path, schema_restart, db_conn)
 
+Process
+----------
+.. image:: docs/schema_registry.png
+   :width: 600
 
 Parameters
 -----------
