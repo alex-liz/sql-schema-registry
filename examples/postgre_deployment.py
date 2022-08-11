@@ -13,7 +13,7 @@ def main():
     """
     parser = argparse.ArgumentParser(description='Deploy schema registry')
     parser.add_argument('-s', '--schema', dest='schema_name', type=str, required=True, help='Schema name')
-    parser.add_argument('-n', '--user', dest='user_name', type=str, help='User name (for audit purposes)')
+    parser.add_argument('-u', '--user', dest='user_name', type=str, help='User name (for audit purposes)')
     parser.add_argument('-d', '--database_name', dest='db_name', type=str, required=True, help='Database name')
     parser.add_argument('-du', '--database_user', dest='db_user', type=str, required=True, help='Database username')
     parser.add_argument('-dps', '--database_password', dest='db_password', type=str, required=True,
