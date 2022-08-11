@@ -14,7 +14,7 @@ class TestSchemaRegistryFiles(unittest.TestCase):
 
     def test__read_file(self):
         sf = SchemaRegistryFiles(schema_name='files')
-        self.assertEqual(sf._read_file(filepath='./files/3-CREATE_TABLE_d_example.sql'), 'SELECT 1;')
+        self.assertEqual(sf._read_file(filepath='./files/3-CREATE_TABLE_d_example.sql'), 'CREATE TABLE d_example;')
 
     def test_parse_sql_file(self):
         sf = SchemaRegistryFiles(schema_name='files')
@@ -25,7 +25,7 @@ class TestSchemaRegistryFiles(unittest.TestCase):
     def test_check_qa_sql_file(self):
         code_formatted = "CREATE TABLE d_user_2;"
         sf = SchemaRegistryFiles(schema_name='files')
-        code = sf.check_qa_sql_file(sql_file='./files/2-CREATE_TABLE_d_user_2.sql', rewrite=False)
+        code = sf.check_qa_sql_file(sql_file=Path('./files/2-CREATE_TABLE_d_user_2.sql'), rewrite=False)
         self.assertEqual(code, code_formatted)
 
 

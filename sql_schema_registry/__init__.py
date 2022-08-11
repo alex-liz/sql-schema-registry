@@ -27,17 +27,18 @@ def deploy(schema_name, files_path, db_name, db_conn, user_name=None, schema_res
         sc_db.reinit_sc()
     db_last_id = sc_db.get_db_last_id()
     sql_files_list = sc_files.get_file_list_ordered(sql_path=files_path)
+    sql_id = 0
     for sql_file in sql_files_list:
         # QA file name and sql cod  e
-        sql_code = sc_files.check_qa_sql_file(sql_file=sql_file.name)
+        sql_code = sc_files.check_qa_sql_file(sql_file=sql_file)
         sql_id = int(sql_file.name.split('-')[0])
         # Only deploy ids bigger than currently deployed
         if db_last_id < sql_id:
             sc_db.execute_sql(sql_code)
             logging.info(f'ID {sql_id} SQL file executed.')
-            ddl, object_name = sc_files.parse_sql_file(sql_file=sql_file)
+            ddl, object_name = sc_files.parse_sql_file(sql_file=sql_file.name)
             sc_db.insert_sc_record(db_name=db_name, user=user_name, sql_id=sql_id, ddl=ddl, object_name=object_name)
-        elif db_last_id > sql_id:
-            logging.error('Max database id is bigger than max files id.')
-        else:
-            logging.info('Deployment up to date.')
+    if db_last_id > sql_id:
+        logging.error('Max database id is bigger than max files id.')
+    else:
+        logging.info('Deployment up to date.')

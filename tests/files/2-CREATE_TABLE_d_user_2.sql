@@ -1,1 +1,1 @@
-create table d_user_2;
+CREATE TABLE d_user_2;

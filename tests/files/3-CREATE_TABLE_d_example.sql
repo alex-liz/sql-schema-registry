@@ -1,1 +1,1 @@
-SELECT 1;
+CREATE TABLE d_example;

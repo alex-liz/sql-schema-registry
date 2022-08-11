@@ -12,7 +12,8 @@ class SchemaRegistryDB:
         :return: True if exists, False if not
         """
         try:
-            if self.db_cur.execute(f"SELECT 1 FROM sql_schema_registry.{self.schema_name};"):
+            self.db_cur.execute(f"SELECT 1 FROM sql_schema_registry.{self.schema_name};")
+            if self.db_cur.fetchone():
                 return True
             else:
                 return False

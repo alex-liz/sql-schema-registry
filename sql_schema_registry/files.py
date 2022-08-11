@@ -15,7 +15,7 @@ class SchemaRegistryFiles:
         """
         try:
             sql_list = []
-            for filename in sorted(Path(sql_path + "/" + self.schema_name).glob('*.sql'),
+            for filename in sorted(Path(sql_path + self.schema_name + "/").glob('*.sql'),
                                    key=lambda path: int(path.stem.rsplit('-')[0])):
                 sql_list.append(filename)
             return sql_list
@@ -29,7 +29,10 @@ class SchemaRegistryFiles:
         :param filepath: path to file
         :return: file text
         """
-        return Path(filepath).read_text()
+        try:
+            return Path(filepath).read_text()
+        except Exception as e:
+            logging.error("Error: " + str(e))
 
     @staticmethod
     def _write_file(filepath, code):
@@ -39,7 +42,10 @@ class SchemaRegistryFiles:
         :param code: SQL code
         :return: Path object
         """
-        return Path(filepath).write_text(code)
+        try:
+            return Path(filepath).write_text(code)
+        except Exception as e:
+            logging.error("Error: " + str(e))
 
     @staticmethod
     def parse_sql_file(sql_file):
@@ -63,12 +69,13 @@ class SchemaRegistryFiles:
             code = self._read_file(sql_file)
             # Reformat code and save in same file
             code = sqlparse.format(code, keyword_case="upper")
-            ddl, object_name = self.parse_sql_file(sql_file=sql_file)
+            ddl, object_name = self.parse_sql_file(sql_file=sql_file.name)
             if ddl in code and object_name in code:
                 if rewrite:
                     self._write_file(filepath=sql_file, code=code)
                 return code
             else:
-                logging.error("File name and code doesn't match.")
+                logging.error(f"{sql_file} file name and code doesn't match.")
+                exit(1)
         except Exception as e:
             logging.error("Error: " + str(e))
