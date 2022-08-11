@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS core.d_user (
+CREATE TABLE IF NOT EXISTS files.d_user (
   id serial,
   name varchar(50) NOT NULL,
   surname varchar(30) NOT NULL,

@@ -70,7 +70,7 @@ class SchemaRegistryFiles:
             # Reformat code and save in same file
             code = sqlparse.format(code, keyword_case="upper")
             ddl, object_name = self.parse_sql_file(sql_file=sql_file.name)
-            if ddl in code and object_name in code:
+            if ddl in code and object_name in code and self.schema_name in code:
                 if rewrite:
                     self._write_file(filepath=sql_file, code=code)
                 return code

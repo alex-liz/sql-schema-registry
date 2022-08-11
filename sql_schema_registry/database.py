@@ -12,7 +12,7 @@ class SchemaRegistryDB:
         :return: True if exists, False if not
         """
         try:
-            self.db_cur.execute(f"SELECT 1 FROM sql_schema_registry.{self.schema_name};")
+            self.db_cur.execute(f"SELECT 1 FROM schema_registry.{self.schema_name};")
             if self.db_cur.fetchone():
                 return True
             else:
@@ -28,7 +28,7 @@ class SchemaRegistryDB:
         try:
             self.db_cur.execute("CREATE SCHEMA IF NOT EXISTS sql_schema_registry;")
             self.db_cur.execute(
-                f"CREATE TABLE IF NOT EXISTS sql_schema_registry.{self.schema_name} (id int, db_name varchar(30) NOT NULL, object_name varchar(50) NOT NULL, DDL varchar(100) NOT NULL, user_name varchar(30), create_ts timestamp NOT NULL, PRIMARY KEY (id));")
+                f"CREATE TABLE IF NOT EXISTS schema_registry.{self.schema_name} (id int, db_name varchar(30) NOT NULL, object_name varchar(50) NOT NULL, DDL varchar(100) NOT NULL, user_name varchar(30), create_ts timestamp NOT NULL, PRIMARY KEY (id));")
             logging.info("Schema registry initialized")
         except Exception as e:
             logging.error("Error: " + str(e))
@@ -39,7 +39,7 @@ class SchemaRegistryDB:
         :return:
         """
         try:
-            self.db_cur.execute(f"TRUNCATE TABLE sql_schema_registry.{self.schema_name};")
+            self.db_cur.execute(f"TRUNCATE TABLE schema_registry.{self.schema_name};")
         except Exception as e:
             logging.error("Error: " + str(e))
 
@@ -49,7 +49,7 @@ class SchemaRegistryDB:
         :return: max id in database
         """
         try:
-            self.db_cur.execute(f"SELECT MAX(id) FROM sql_schema_registry.{self.schema_name};")
+            self.db_cur.execute(f"SELECT MAX(id) FROM schema_registry.{self.schema_name};")
             max_id = self.db_cur.fetchone()[0]
             if not max_id:
                 return 0
@@ -70,7 +70,7 @@ class SchemaRegistryDB:
         """
         try:
             self.db_cur.execute(
-                f"INSERT INTO sql_schema_registry.{self.schema_name} (id, db_name, object_name, DDL, user_name, create_ts) VALUES ('{sql_id}', '{db_name}', '{object_name}', '{ddl}', '{user}', now() );")
+                f"INSERT INTO schema_registry.{self.schema_name} (id, db_name, object_name, DDL, user_name, create_ts) VALUES ('{sql_id}', '{db_name}', '{object_name}', '{ddl}', '{user}', now() );")
             logging.info(f'Schema registry table updated with {ddl} {object_name}.')
         except Exception as e:
             logging.error("Error: " + str(e))
@@ -80,3 +80,4 @@ class SchemaRegistryDB:
             self.db_cur.execute(code)
         except Exception as e:
             logging.error("Error: " + str(e))
+            exit(1)

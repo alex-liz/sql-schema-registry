@@ -1,1 +1,1 @@
-CREATE TABLE d_user_2;
+CREATE TABLE IF NOT EXISTS files.d_user_2(id serial);

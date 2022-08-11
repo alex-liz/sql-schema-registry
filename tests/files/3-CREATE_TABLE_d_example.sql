@@ -1,1 +1,1 @@
-CREATE TABLE d_example;
+CREATE TABLE IF NOT EXISTS files.d_example(name varchar(50) NOT NULL);
