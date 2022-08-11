@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 setup(
     name='sql_schema_registry',
     packages=find_packages(include=['sql_schema_registry']),
-    version='0.2.5',
+    version='0.2.6',
     description='Schema registry',
     author='Alejandro Liz',
     license='MIT',

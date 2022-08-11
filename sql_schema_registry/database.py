@@ -26,7 +26,7 @@ class SchemaRegistryDB:
         :return: None
         """
         try:
-            self.db_cur.execute("CREATE SCHEMA IF NOT EXISTS sql_schema_registry;")
+            self.db_cur.execute("CREATE SCHEMA IF NOT EXISTS schema_registry;")
             self.db_cur.execute(
                 f"CREATE TABLE IF NOT EXISTS schema_registry.{self.schema_name} (id int, db_name varchar(30) NOT NULL, object_name varchar(50) NOT NULL, DDL varchar(100) NOT NULL, user_name varchar(30), create_ts timestamp NOT NULL, PRIMARY KEY (id));")
             logging.info("Schema registry initialized")
