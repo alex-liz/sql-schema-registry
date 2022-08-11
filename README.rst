@@ -18,6 +18,37 @@ Quick Start
 
    $ pip install sql_schema_registry
 
+.. code-block:: python
+    sql_schema_registry.deploy(schema_name, db_name, user_name, files_path, schema_restart, db_conn)
+
+
+Parameters
+-----------
+schema_name
+~~~~~~~~~~~~~~~~~~~~~~
+Name of the schema to deploy. Same name as the folder where sql files are.
+
+db_name
+~~~~~~~~~~~~~~~~~~~~~~
+Name of the database. Same name as the folder where schemas folders are.
+
+user_name
+~~~~~~~~~~~~~~~~~~~~~~
+
+Name of the user (optional)
+
+files_path
+~~~~~~~~~~~~~~~~~~~~~~
+Path to the schema folder
+
+schema_restart
+~~~~~~~~~~~~~~~~~~~~~~
+Restart from scratch (optional)
+
+db_conn
+~~~~~~~~~~~~~~~~~~~~~~
+Connection to database
+
 Links
 -----
 
