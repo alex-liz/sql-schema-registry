@@ -59,4 +59,4 @@ Bug tracker
    https://github.com/alex-liz/sql-schema-registry/issues
 
 Documentation
-   https://sqlparse.readthedocs.io/
+   WIP
