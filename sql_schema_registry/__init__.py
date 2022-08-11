@@ -27,6 +27,9 @@ def deploy(schema_name, files_path, db_name, db_conn, user_name=None, schema_res
         sc_db.reinit_sc()
     db_last_id = sc_db.get_db_last_id()
     sql_files_list = sc_files.get_file_list_ordered(sql_path=files_path)
+    if len(sql_files_list) == 0:
+        logging.error(f'There is no SQL files in {files_path}.')
+        exit(1)
     sql_id = 0
     for sql_file in sql_files_list:
         # QA file name and sql cod  e
